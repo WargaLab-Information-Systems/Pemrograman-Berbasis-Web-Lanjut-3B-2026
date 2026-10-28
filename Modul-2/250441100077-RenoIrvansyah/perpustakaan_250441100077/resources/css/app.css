@@ -1,0 +1,192 @@
+/* @import "tailwindcss"; */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+/* section {
+    padding-top: 5rem;
+} */
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    background-color: #444545;
+    color: white;
+    padding: 25px 8%;
+}
+
+header h1 {
+    font-size: 28px;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px 8%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: #444545;
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #808080;
+}
+
+main {
+    width: 84%;
+    max-width: 1200px;
+    margin: 40px auto;
+    min-height: 500px;
+}
+
+main h2 {
+    color: #444545;
+    margin-bottom: 15px;
+}
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.book-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.book-card h3 {
+    color: #444545;
+    margin-bottom: 12px;
+}
+
+.book-card p {
+    margin-bottom: 8px;
+}
+
+.book-card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 15px;
+    background-color: #444545;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.book-card a:hover {
+    background-color: #808080;
+}
+
+footer {
+    background-color: #444545;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.hero {
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #444545;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.hero-button:hover {
+    background-color: #808080;
+}
+
+.detail-card {
+    background-color: white;
+    padding: 35px;
+    max-width: 700px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.detail-card h2 {
+    margin-bottom: 25px;
+}
+
+.detail-info p {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 16px;
+    background-color: #444545;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.not-found {
+    background-color: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.not-found p {
+    margin: 15px 0;
+}
+
+.not-found a {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #1e3a5f;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+} */
