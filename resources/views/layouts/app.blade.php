@@ -6,7 +6,7 @@
 
     <title>@yield('title', 'Perpustakaan')</title>
 
-    @vhhjite(['resources/css/app.css'])
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                     Beranda
                 </a>
 
-                <a href="{{ route('buku.index') }}"
+                <a href="{{ route('web.buku.index') }}"
                    class="{{ request()->routeIs('buku.*') ? 'active' : '' }}">
                     Daftar Buku
                 </a>
@@ -45,3 +45,19 @@
 
 </body>
 </html>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

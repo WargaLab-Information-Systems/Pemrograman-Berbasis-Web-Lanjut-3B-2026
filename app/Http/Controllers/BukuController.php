@@ -2,47 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+
 class BukuController extends Controller
 {
     private function dataBuku()
     {
-        return [
-            [
-                'id' => 1,
-                'judul' => 'Laskar Pelangi',
-                'penulis' => 'Andrea Hirata',
-                'tahun' => 2005,
-                'kategori' => 'Novel',
-            ],
-            [
-                'id' => 2,
-                'judul' => 'Bumi',
-                'penulis' => 'Tere Liye',
-                'tahun' => 2014,
-                'kategori' => 'Fantasi',
-            ],
-            [
-                'id' => 3,
-                'judul' => 'Negeri 5 Menara',
-                'penulis' => 'Ahmad Fuadi',
-                'tahun' => 2009,
-                'kategori' => 'Novel',
-            ],
-            [
-                'id' => 4,
-                'judul' => 'Atomic Habits',
-                'penulis' => 'James Clear',
-                'tahun' => 2018,
-                'kategori' => 'Pengembangan Diri',
-            ],
-            [
-                'id' => 5,
-                'judul' => 'Filosofi Teras',
-                'penulis' => 'Henry Manampiring',
-                'tahun' => 2018,
-                'kategori' => 'Filosofi',
-            ],
-        ];
+        return Buku::with('kategori')->get()->map(function ($buku) {
+            return [
+                'id' => $buku->id,
+                'judul' => $buku->judul,
+                'penulis' => $buku->penulis,
+                'tahun' => $buku->tahun_terbit,
+                'kategori' => $buku->kategori->nama,
+            ];
+        })->toArray();
     }
 
     public function index()
@@ -60,3 +34,6 @@ class BukuController extends Controller
         return view('buku.show', compact('buku'));
     }
 }
+
+
+

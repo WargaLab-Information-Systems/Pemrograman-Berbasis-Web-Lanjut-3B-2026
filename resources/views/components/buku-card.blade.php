@@ -26,7 +26,7 @@
         <div class="card-footer">
             {{ $slot }}
 
-            <a href="{{ route('buku.show', $id) }}" class="btn-detail">
+            <a href="{{ route('web.buku.show', $id) }}" class="btn-detail">
                 Detail →
             </a>
         </div>

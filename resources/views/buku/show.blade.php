@@ -9,7 +9,7 @@
 
         @if($buku)
 
-            <a href="{{ route('buku.index') }}" class="back-link">
+            <a href="{{ route('web.buku.index') }}" class="back-link">
                 ← Kembali ke Daftar Buku
             </a>
 
@@ -70,7 +70,7 @@
                     Data buku dengan ID tersebut tidak tersedia.
                 </p>
 
-                <a href="{{ route('buku.index') }}" class="btn-primary">
+                <a href="{{ route('web.buku.index') }}" class="btn-primary">
                     Kembali ke Daftar Buku
                 </a>
             </div>
