@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 class BukuController extends Controller
 {
-    // Data buku sementara
     private function daftarBuku()
     {
         return [
@@ -54,19 +53,20 @@ class BukuController extends Controller
         ];
     }
 
-    // Halaman Daftar Buku
     public function index()
     {
         $buku = $this->daftarBuku();
-
         return view('buku.index', compact('buku'));
     }
 
-    // Halaman Detail Buku
-    public function detail($id)
+    public function show($id)
     {
         $buku = collect($this->daftarBuku())
             ->firstWhere('id', (int) $id);
+
+        if (!$buku) {
+            abort(404, 'Buku tidak ditemukan');
+        }
 
         return view('buku.detail', compact('buku'));
     }

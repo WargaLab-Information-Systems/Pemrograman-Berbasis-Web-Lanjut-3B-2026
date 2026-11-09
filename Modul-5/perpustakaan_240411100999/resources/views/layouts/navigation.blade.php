@@ -15,6 +15,60 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @can('lihat daftar buku')
+                        <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
+                            {{ __('Daftar Buku') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @role('admin')
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Admin Panel') }}
+                        </x-nav-link>
+                    @endrole
+
+                    @role('petugas')
+                        <x-nav-link :href="route('petugas.dashboard')" :active="request()->routeIs('petugas.dashboard')">
+                            {{ __('Dashboard Petugas') }}
+                        </x-nav-link>
+                    @endrole
+
+                    @can('kelola data buku')
+                        <x-nav-link :href="route('buku.kelola')" :active="request()->routeIs('buku.kelola')">
+                            {{ __('Kelola Buku') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('kelola data pengguna')
+                        <x-nav-link :href="route('admin.pengguna.index')" :active="request()->routeIs('admin.pengguna.*')">
+                            {{ __('Pengguna') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('kelola peminjaman')
+                        <x-nav-link :href="route('peminjaman.index')" :active="request()->routeIs('peminjaman.index')">
+                            {{ __('Peminjaman') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('kelola pengembalian')
+                        <x-nav-link :href="route('pengembalian.index')" :active="request()->routeIs('pengembalian.index')">
+                            {{ __('Pengembalian') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('lihat laporan perpustakaan')
+                        <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                            {{ __('Laporan') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('lihat riwayat peminjaman sendiri')
+                        <x-nav-link :href="route('riwayat.saya')" :active="request()->routeIs('riwayat.*')">
+                            {{ __('Riwayat Saya') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -70,6 +124,60 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @can('lihat daftar buku')
+                <x-responsive-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
+                    {{ __('Daftar Buku') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @role('admin')
+                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    {{ __('Admin Panel') }}
+                </x-responsive-nav-link>
+            @endrole
+
+            @role('petugas')
+                <x-responsive-nav-link :href="route('petugas.dashboard')" :active="request()->routeIs('petugas.dashboard')">
+                    {{ __('Dashboard Petugas') }}
+                </x-responsive-nav-link>
+            @endrole
+
+            @can('kelola data buku')
+                <x-responsive-nav-link :href="route('buku.kelola')" :active="request()->routeIs('buku.kelola')">
+                    {{ __('Kelola Buku') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('kelola data pengguna')
+                <x-responsive-nav-link :href="route('admin.pengguna.index')" :active="request()->routeIs('admin.pengguna.*')">
+                    {{ __('Pengguna') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('kelola peminjaman')
+                <x-responsive-nav-link :href="route('peminjaman.index')" :active="request()->routeIs('peminjaman.index')">
+                    {{ __('Peminjaman') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('kelola pengembalian')
+                <x-responsive-nav-link :href="route('pengembalian.index')" :active="request()->routeIs('pengembalian.index')">
+                    {{ __('Pengembalian') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('lihat laporan perpustakaan')
+                <x-responsive-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                    {{ __('Laporan') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('lihat riwayat peminjaman sendiri')
+                <x-responsive-nav-link :href="route('riwayat.saya')" :active="request()->routeIs('riwayat.*')">
+                    {{ __('Riwayat Saya') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

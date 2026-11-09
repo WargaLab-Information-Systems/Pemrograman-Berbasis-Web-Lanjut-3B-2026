@@ -1,18 +1,29 @@
+@php $kelola = request()->routeIs('buku.kelola'); @endphp
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Buku</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 <div class="container py-4">
-    <h1 class="h3 mb-4">Data Buku</h1>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">{{ $kelola ? 'Kelola Data Buku' : 'Daftar Buku' }}</h1>
+        <div class="d-flex gap-2">
+            <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary btn-sm">Dashboard</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+            </form>
+        </div>
+    </div>
 
     <div id="pesan" class="alert d-none" role="alert"></div>
 
-    <div class="card mb-4">
+        <div class="card mb-4" @unless ($kelola) style="display:none" @endunless>
         <div class="card-header" id="judulForm">Tambah Buku</div>
         <div class="card-body">
             <form id="formBuku" novalidate>
@@ -53,7 +64,7 @@
                 <th>Judul</th>
                 <th>Penulis</th>
                 <th>Tahun Terbit</th>
-                <th style="width:160px">Aksi</th>
+                <th style="width:160px">{{ $kelola ? 'Aksi' : 'Detail' }}</th>
             </tr>
         </thead>
         <tbody id="tabelBuku"></tbody>
@@ -67,7 +78,9 @@
 </div>
 
 <script>
-const API_BUKU     = '/api/buku';
+const API_BUKU = '/api/buku';
+const KELOLA   = @json($kelola);
+const CSRF     = document.querySelector('meta[name="csrf-token"]')?.content ?? '';
 const API_KATEGORI = '/api/kategori';
 
 const form        = document.getElementById('formBuku');
@@ -108,6 +121,7 @@ async function kirimRequest(url, options = {}) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': CSRF,
                 ...(options.headers || {}),
             },
         });
@@ -178,19 +192,27 @@ function renderTabel(daftar) {
         [meta.from + i, buku.kategori, buku.judul, buku.penulis, buku.tahun]
             .forEach(v => { tr.insertCell().textContent = v ?? '-'; });
 
-        const aksi = tr.insertCell();
+                const aksi = tr.insertCell();
 
-        const btnUbah = document.createElement('button');
-        btnUbah.className = 'btn btn-warning btn-sm me-1';
-        btnUbah.textContent = 'Ubah';
-        btnUbah.addEventListener('click', () => isiFormUbah(buku));
+        if (KELOLA) {
+            const btnUbah = document.createElement('button');
+            btnUbah.className = 'btn btn-warning btn-sm me-1';
+            btnUbah.textContent = 'Ubah';
+            btnUbah.addEventListener('click', () => isiFormUbah(buku));
 
-        const btnHapus = document.createElement('button');
-        btnHapus.className = 'btn btn-danger btn-sm';
-        btnHapus.textContent = 'Hapus';
-        btnHapus.addEventListener('click', () => hapusBuku(buku));
+            const btnHapus = document.createElement('button');
+            btnHapus.className = 'btn btn-danger btn-sm';
+            btnHapus.textContent = 'Hapus';
+            btnHapus.addEventListener('click', () => hapusBuku(buku));
 
-        aksi.append(btnUbah, btnHapus);
+            aksi.append(btnUbah, btnHapus);
+        } else {
+            const a = document.createElement('a');
+            a.className = 'btn btn-outline-primary btn-sm';
+            a.href = `/buku/${buku.id}`;
+            a.textContent = 'Lihat';
+            aksi.append(a);
+        }
     });
 
     infoHalaman.textContent = `Halaman ${meta.current_page} dari ${meta.last_page}`;
