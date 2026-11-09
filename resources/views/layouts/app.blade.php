@@ -1,63 +1,39 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Perpustakaan')</title>
+    <title>@yield('title', 'PerpustakaanKu')</title>
 
-    @vite(['resources/css/app.css'])
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- CSS utama PerpustakaanKu --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    {{-- CSS khusus setiap halaman --}}
+    @stack('styles')
 </head>
 
 <body>
+    <div class="min-h-screen">
+        @include('layouts.navigation')
 
-    <header class="header">
-        <div class="container header-content">
-            <a href="{{ route('home') }}" class="logo">
-                <span class="logo-icon">📚</span>
-                <span>PerpustakaanKu</span>
-            </a>
+        @isset($header)
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endisset
 
-            <nav class="navbar">
-                <a href="{{ route('home') }}"
-                   class="{{ request()->routeIs('home') ? 'active' : '' }}">
-                    Beranda
-                </a>
-
-                <a href="{{ route('web.buku.index') }}"
-                   class="{{ request()->routeIs('buku.*') ? 'active' : '' }}">
-                    Daftar Buku
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        @yield('content')
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>© {{ date('Y') }} PerpustakaanKu</p>
-            <p>Tempat membaca, belajar, dan menemukan inspirasi.</p>
-        </div>
-    </footer>
-
+        <main>
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
